@@ -1,0 +1,8 @@
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.csproj.AssemblyReference.cache
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.AssemblyInfoInputs.cache
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.AssemblyInfo.cs
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.csproj.CoreCompileInputs.cache
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\YoDevs200\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\obj\Debug\net8.0\Booking.Notifications.WebAPI.sourcelink.json
