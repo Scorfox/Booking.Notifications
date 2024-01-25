@@ -27,3 +27,6 @@ D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Appli
 D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\obj\Debug\net8.0\refint\Booking.Notifications.Application.dll
 D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\obj\Debug\net8.0\Booking.Notifications.Application.pdb
 D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\obj\Debug\net8.0\ref\Booking.Notifications.Application.dll
+D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\bin\Debug\net8.0\Booking.Notifications.Domain.dll
+D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\bin\Debug\net8.0\Booking.Notifications.Domain.pdb
+D:\Projects\YoDevs200\Booking.Notifications\src\Core\Booking.Notifications.Application\obj\Debug\net8.0\Booking.Notifications.Application.csproj.CopyComplete

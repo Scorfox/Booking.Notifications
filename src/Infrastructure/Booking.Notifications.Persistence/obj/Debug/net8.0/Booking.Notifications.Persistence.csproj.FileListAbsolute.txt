@@ -29,3 +29,8 @@ D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notificat
 D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\obj\Debug\net8.0\refint\Booking.Notifications.Persistence.dll
 D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\obj\Debug\net8.0\Booking.Notifications.Persistence.pdb
 D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\obj\Debug\net8.0\ref\Booking.Notifications.Persistence.dll
+D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\bin\Debug\net8.0\Booking.Notifications.Application.dll
+D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\bin\Debug\net8.0\Booking.Notifications.Domain.dll
+D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\bin\Debug\net8.0\Booking.Notifications.Application.pdb
+D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\bin\Debug\net8.0\Booking.Notifications.Domain.pdb
+D:\Projects\YoDevs200\Booking.Notifications\src\Infrastructure\Booking.Notifications.Persistence\obj\Debug\net8.0\Booking.Notifications.Persistence.csproj.CopyComplete

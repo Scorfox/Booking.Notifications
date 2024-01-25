@@ -10,8 +10,7 @@ using Booking.Notifications.WebAPI.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ConfigurePersistence(builder.Configuration);
-//builder.Services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+//builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplication();
 
 builder.Services.ConfigureApiBehavior();
