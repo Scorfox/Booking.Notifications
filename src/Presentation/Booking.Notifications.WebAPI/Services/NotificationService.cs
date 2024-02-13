@@ -19,12 +19,12 @@ public class NotificationService : INotificationService
         _mailOptions = mailOptions.Value;
     }
 
-    public async Task<bool> SendMailAsync(string templateId, string ToMail)
+    public async Task<bool> SendMailAsync(string subjecte, string ToMail)
     {
         try
         {
             var email = new MimeMessage();
-            var dataTemplate = await _notificationRepository.GetTemplateByIdAsync(templateId, default);
+            var dataTemplate = await _notificationRepository.GetTemplateBySubjecteAsync(subjecte, default);
 
             email.Sender = MailboxAddress.Parse(_mailOptions.Mail);
             email.To.Add(MailboxAddress.Parse(ToMail));

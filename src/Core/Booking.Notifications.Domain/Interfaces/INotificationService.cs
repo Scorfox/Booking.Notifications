@@ -2,5 +2,5 @@
 
 public interface INotificationService
 {
-    Task<bool> SendMailAsync(string templateId, string ToMail);
+    Task<bool> SendMailAsync(string subjecte, string ToMail);
 }

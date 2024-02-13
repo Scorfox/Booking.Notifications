@@ -1,6 +1,8 @@
 using Booking.Notifications.Application.Features.NotificationFeatures;
+using Booking.Notifications.Domain.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace Booking.Notifications.WebAPI.Controllers
 {
@@ -9,46 +11,27 @@ namespace Booking.Notifications.WebAPI.Controllers
     public class NotificationController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly INotificationService _notificationService;
 
-        public NotificationController(IMediator mediator)
+        public NotificationController(IMediator mediator, INotificationService notificationService)
         {
             _mediator = mediator;
-        }
-
-        [HttpPost("Default")]
-        public async Task<IActionResult> Send(NotificationRequest request)
-        {
-            try
-            {
-                var result = await _mediator.Send(request);
-                if (result)
-                {
-                    return Ok("Уведомление успешно отправлено");
-                }
-                else
-                {
-                    return BadRequest("Не удалось отправить уведомление");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
-            }
+            _notificationService = notificationService;
         }
 
         [HttpPost("Подтверждение")]
-        public async Task<IActionResult> SendBookingConfirmation(NotificationRequest request)
+        public async Task<IActionResult> SendBookingConfirmation(NotificationRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _mediator.Send(request);
+                var result = await _mediator.Send(request, cancellationToken);
                 if (result)
                 {
-                    return Ok("Уведомление успешно отправлено");
+                    return Ok(_notificationService.SendMailAsync("Подтверждение вашего бронирования", request.FromEmail));
                 }
                 else
                 {
-                    return BadRequest("Не удалось отправить уведомление");
+                    return BadRequest("Не удалось отправить сообщение");
                 }
             }
             catch (Exception ex)
@@ -58,14 +41,14 @@ namespace Booking.Notifications.WebAPI.Controllers
         }
 
         [HttpPost("Напоминание")]
-        public async Task<IActionResult> SendBookingUpcoming(NotificationRequest request)
+        public async Task<IActionResult> SendBookingUpcoming(NotificationRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _mediator.Send(request);
+                var result = await _mediator.Send(request, cancellationToken);
                 if (result)
                 {
-                    return Ok("Уведомление успешно отправлено");
+                    return Ok(_notificationService.SendMailAsync("Напоминание о вашем бронировании", request.FromEmail));
                 }
                 else
                 {
@@ -79,14 +62,14 @@ namespace Booking.Notifications.WebAPI.Controllers
         }
 
         [HttpPost("Благодарность")]
-        public async Task<IActionResult> SendThanksForVisiting(NotificationRequest request)
+        public async Task<IActionResult> SendThanksForVisiting(NotificationRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _mediator.Send(request);
+                var result = await _mediator.Send(request, cancellationToken);
                 if (result)
                 {
-                    return Ok("Уведомление успешно отправлено");
+                    return Ok(_notificationService.SendMailAsync("Спасибо за ваше посещение", request.FromEmail));
                 }
                 else
                 {
@@ -100,14 +83,14 @@ namespace Booking.Notifications.WebAPI.Controllers
         }
 
         [HttpPost("Оценка сервиса")]
-        public async Task<IActionResult> SendAssessmentService(NotificationRequest request)
+        public async Task<IActionResult> SendAssessmentService(NotificationRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _mediator.Send(request);
+                var result = await _mediator.Send(request, cancellationToken);
                 if (result)
                 {
-                    return Ok("Уведомление успешно отправлено");
+                    return Ok(_notificationService.SendMailAsync("Спасибо за ваше посещение", request.FromEmail));
                 }
                 else
                 {
