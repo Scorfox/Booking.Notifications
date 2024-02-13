@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Booking.Notifications.Application.Repositories;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,5 +12,6 @@ public static class ServiceExtensions
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        
     }
 }

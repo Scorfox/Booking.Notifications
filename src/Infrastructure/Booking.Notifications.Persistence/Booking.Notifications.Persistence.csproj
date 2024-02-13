@@ -17,4 +17,8 @@
       <ProjectReference Include="..\..\Core\Booking.Notifications.Domain\Booking.Notifications.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    </ItemGroup>
+  
 </Project>

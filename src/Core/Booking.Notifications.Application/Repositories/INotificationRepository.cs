@@ -2,7 +2,9 @@
 
 namespace Booking.Notifications.Application.Repositories;
 
-public interface INotificationRepository
+public interface INotificationRepository : IBaseRepository<NotificationTamplate>
 {
-    public Task SendMailAsync(MailRequest mailRequest);
+    Task<NotificationTamplate> GetTemplateBySubjecteAsync(string subjecte, CancellationToken cancellationToken);
+
+    Task<NotificationTamplate> GetTemplateByIdAsync(string TemplateID, CancellationToken cancellationToken);
 }

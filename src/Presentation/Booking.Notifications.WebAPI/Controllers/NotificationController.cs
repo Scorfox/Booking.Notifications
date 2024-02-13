@@ -1,30 +1,122 @@
-using Booking.Notifications.Application.Repositories;
-using Booking.Notifications.Domain.Models;
+using Booking.Notifications.Application.Features.NotificationFeatures;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.Notifications.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NotificationController : Controller
+    public class NotificationController : ControllerBase
     {
-        public readonly INotificationRepository _notificationService;
+        private readonly IMediator _mediator;
 
-        public NotificationController(INotificationRepository notificationService)
+        public NotificationController(IMediator mediator)
         {
-            _notificationService = notificationService;
+            _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Send(MailRequest mailRequest)
+        [HttpPost("Default")]
+        public async Task<IActionResult> Send(NotificationRequest request)
         {
             try
             {
-                await _notificationService.SendMailAsync(mailRequest);
-                return Ok();
-            } catch (Exception ex)
+                var result = await _mediator.Send(request);
+                if (result)
+                {
+                    return Ok("Уведомление успешно отправлено");
+                }
+                else
+                {
+                    return BadRequest("Не удалось отправить уведомление");
+                }
+            }
+            catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Подтверждение")]
+        public async Task<IActionResult> SendBookingConfirmation(NotificationRequest request)
+        {
+            try
+            {
+                var result = await _mediator.Send(request);
+                if (result)
+                {
+                    return Ok("Уведомление успешно отправлено");
+                }
+                else
+                {
+                    return BadRequest("Не удалось отправить уведомление");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Напоминание")]
+        public async Task<IActionResult> SendBookingUpcoming(NotificationRequest request)
+        {
+            try
+            {
+                var result = await _mediator.Send(request);
+                if (result)
+                {
+                    return Ok("Уведомление успешно отправлено");
+                }
+                else
+                {
+                    return BadRequest("Не удалось отправить уведомление");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Благодарность")]
+        public async Task<IActionResult> SendThanksForVisiting(NotificationRequest request)
+        {
+            try
+            {
+                var result = await _mediator.Send(request);
+                if (result)
+                {
+                    return Ok("Уведомление успешно отправлено");
+                }
+                else
+                {
+                    return BadRequest("Не удалось отправить уведомление");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Оценка сервиса")]
+        public async Task<IActionResult> SendAssessmentService(NotificationRequest request)
+        {
+            try
+            {
+                var result = await _mediator.Send(request);
+                if (result)
+                {
+                    return Ok("Уведомление успешно отправлено");
+                }
+                else
+                {
+                    return BadRequest("Не удалось отправить уведомление");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
             }
         }
     }
