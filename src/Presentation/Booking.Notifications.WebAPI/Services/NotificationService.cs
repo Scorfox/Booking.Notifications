@@ -19,19 +19,18 @@ public class NotificationService : INotificationService
         _mailOptions = mailOptions.Value;
     }
 
-    public async Task<bool> SendMailAsync(string subjecte, string ToMail)
+    public async Task<bool> SendMailAsync(string ToMail, string subjecte, string body)
     {
         try
         {
             var email = new MimeMessage();
-            var dataTemplate = await _notificationRepository.GetTemplateBySubjecteAsync(subjecte, default);
 
             email.Sender = MailboxAddress.Parse(_mailOptions.Mail);
             email.To.Add(MailboxAddress.Parse(ToMail));
-            email.Subject = dataTemplate.Subject;
+            email.Subject = subjecte;
 
             var builder = new BodyBuilder();
-            builder.HtmlBody = dataTemplate.Body;
+            builder.HtmlBody = body;
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
             smtp.Connect(_mailOptions.Host, _mailOptions.Port, SecureSocketOptions.StartTls);

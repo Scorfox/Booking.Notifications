@@ -2,8 +2,6 @@
 
 public class MailOptions
 {
-    public static string Key = "Jwt";
-
     public string Mail { get; set; }
 
     public string DisplayName { get; set; }

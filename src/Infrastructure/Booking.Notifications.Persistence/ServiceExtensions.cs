@@ -1,4 +1,6 @@
-﻿using Booking.Notifications.Persistence.Context;
+﻿using Booking.Notifications.Application.Repositories;
+using Booking.Notifications.Persistence.Context;
+using Booking.Notifications.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,5 +13,7 @@ public static class ServiceExtensions
     {
         var connectionString = configuration.GetConnectionString("PostgreSQL");
         
-        services.AddDbContext<DataContext>(opt => { opt.UseNpgsql(connectionString); });    }
+        services.AddDbContext<DataContext>(opt => { opt.UseNpgsql(connectionString); });
+        services.AddTransient<INotificationRepository, NotificationRepository>();
+    }
 }

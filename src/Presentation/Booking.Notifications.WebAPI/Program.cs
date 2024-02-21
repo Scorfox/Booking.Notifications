@@ -9,6 +9,7 @@ using Booking.Notifications.Persistence.Services;
 using Booking.Notifications.WebAPI.Options;
 using Booking.Notifications.Domain.Interfaces;
 using Booking.Notifications.Persistence.Repositories;
+using Booking.Notifications.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,11 +29,13 @@ builder.Services.AddSwaggerGen(opt =>
 
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
-builder.Services.Configure<MailOptions>(builder.Configuration.GetSection(MailOptions.Key));
+builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
 
 var app = builder.Build();
 
 var serviceScope = app.Services.CreateScope();
+var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
+dataContext?.Database.EnsureCreated();
 
 app.UseSwagger();
 app.UseSwaggerUI();

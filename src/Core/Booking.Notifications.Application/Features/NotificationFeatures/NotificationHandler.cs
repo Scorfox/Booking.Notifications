@@ -19,18 +19,18 @@ public sealed class NotificationHandler : IRequestHandler<NotificationRequest, b
     {
         try
         {
-            var template = await _notificationRepository.GetTemplateBySubjecteAsync(request.Subjecte, cancellationToken);
-            if (template == null)
+            var tamplate = await _notificationRepository.GetTemplateBySubjecteAsync(request.Subjecte);
+            if (tamplate == null)
             {
                 throw new Exception($"Шаблон {request.Subjecte} не найден.");
             }
 
             // Заменяем переменные в теле сообщения, если необходимо
-            var processedBody = template.Body;
+            var processedBody = tamplate.Body;
 
             // Отправляем письмо
             // Требуется изменение под использование processedBody
-            return await _notificationService.SendMailAsync(request.FromEmail, template.Subject);
+            return await _notificationService.SendMailAsync(request.FromEmail, tamplate.Subject, tamplate.Body);
         }
         catch (Exception ex)
         {

@@ -9,13 +9,13 @@ namespace Booking.Notifications.Persistence.Repositories;
 
 public class NotificationRepository(DataContext context) : BaseRepository<NotificationTamplate>(context), INotificationRepository
 {
-    public async Task<NotificationTamplate> GetTemplateBySubjecteAsync(string subjecte, CancellationToken cancellationToken)
+    public async Task<NotificationTamplate> GetTemplateBySubjecteAsync(string subjecte)
     {
-        return await context.NotificationTemplates.SingleAsync(x => x.Subject == subjecte, cancellationToken);
+        return await context.NotificationTemplates.SingleOrDefaultAsync(x => x.Subject == subjecte);
     }
 
-    public async Task<NotificationTamplate> GetTemplateByIdAsync(string TemplateId, CancellationToken cancellationToken)
+    public async Task<NotificationTamplate> GetTemplateByIdAsync(string TemplateId)
     {
-        return await context.NotificationTemplates.SingleAsync(x => x.Id == Guid.Parse(TemplateId), cancellationToken);
+        return await context.NotificationTemplates.SingleOrDefaultAsync(x => x.Id == Guid.Parse(TemplateId));
     }
 }
