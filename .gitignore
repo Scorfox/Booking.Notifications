@@ -1,39 +1,19 @@
-/.idea/
-*.vsidx
+# Игнорировать файлы бинарных зависимостей NuGet
+*.dll
+*.exe
+
+# Игнорировать папку bin и obj
+bin/
+obj/
+
+# Игнорировать файлы конфигурации
+*.suo
+*.user
 *.cache
 
-# Files built by Visual Studio
-*_i.c
-*_p.c
-*_h.h
-*.ilk
-*.meta
-*.obj
-*.iobj
-*.pch
-*.pdb
-*.ipdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
-*.tmp_proj
-*_wpftmp.csproj
-*.log
-*.tlog
-*.vspscc
-*.vssscc
-.builds
-*.pidb
-*.svclog
-*.scc
+# Игнорировать файлы развертывания
+*.publishsettings
 
-# Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-*.sap
+# Игнорировать каталоги, создаваемые Visual Studio для решения и проектов
+.vscode/
+.vs/

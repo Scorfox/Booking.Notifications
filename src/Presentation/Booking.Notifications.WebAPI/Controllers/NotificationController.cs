@@ -1,4 +1,5 @@
 using Booking.Notifications.Application.Features.NotificationFeatures;
+using Booking.Notifications.Application.Repositories;
 using Booking.Notifications.Domain.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -12,31 +13,25 @@ namespace Booking.Notifications.WebAPI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly INotificationService _notificationService;
+        private readonly INotificationRepository _notificationRepository;
 
-        public NotificationController(IMediator mediator, INotificationService notificationService)
+        public NotificationController(IMediator mediator, INotificationService notificationService, INotificationRepository notificationRepository)
         {
             _mediator = mediator;
             _notificationService = notificationService;
+            _notificationRepository = notificationRepository;
         }
 
-        [HttpPost("Подтверждение")]
+        [HttpPost]
         public async Task<IActionResult> SendBookingConfirmation(NotificationRequest request, CancellationToken cancellationToken)
         {
-            if (request.Subjecte != "1")
-                return Conflict();
-
-                request.Subjecte = "Подтверждение вашего бронирования";
             try
             {
                 var result = await _mediator.Send(request, cancellationToken);
                 if (result)
-                {
                     return Ok("Сообщение отправлено");
-                }
                 else
-                {
                     return BadRequest("Не удалось отправить сообщение");
-                }
             }
             catch (Exception ex)
             {
@@ -44,49 +39,13 @@ namespace Booking.Notifications.WebAPI.Controllers
             }
         }
 
-        [HttpPost("Напоминание")]
-        public async Task<IActionResult> SendBookingUpcoming(NotificationRequest request, CancellationToken cancellationToken)
+        [HttpGet]
+        public async Task<IActionResult> GetAllTemplate(CancellationToken cancellationToken)
         {
-            if (request.Subjecte != "2")
-                return Conflict();
-            else
-                request.Subjecte = "Напоминание о вашем бронировании";
             try
             {
-                var result = await _mediator.Send(request, cancellationToken);
-                if (result)
-                {
-                    return Ok("Сообщение отправлено");
-                }
-                else
-                {
-                    return BadRequest("Не удалось отправить уведомление");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Произошла ошибка: {ex.Message}");
-            }
-        }
-
-        [HttpPost("Благодарность")]
-        public async Task<IActionResult> SendThanksForVisiting(NotificationRequest request, CancellationToken cancellationToken)
-        {
-            if (request.Subjecte != "3")
-                return Conflict();
-            else
-                request.Subjecte = "Спасибо за ваше посещение";
-            try
-            {
-                var result = await _mediator.Send(request, cancellationToken);
-                if (result)
-                {
-                    return Ok("Сообщение отправлено");
-                }
-                else
-                {
-                    return BadRequest("Не удалось отправить уведомление");
-                }
+                var result = await _notificationRepository.GetAll(cancellationToken);
+                return Ok(result);
             }
             catch (Exception ex)
             {

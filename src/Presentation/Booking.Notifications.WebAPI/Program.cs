@@ -10,6 +10,8 @@ using Booking.Notifications.WebAPI.Options;
 using Booking.Notifications.Domain.Interfaces;
 using Booking.Notifications.Persistence.Repositories;
 using Booking.Notifications.Persistence.Context;
+using MassTransit;
+using Booking.Notifications.Application.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,21 @@ builder.Services.ConfigureCorsPolicy();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMQ:Host"], h =>
+        {
+            h.Username(builder.Configuration["RabbitMQ:Username"]);
+            h.Password(builder.Configuration["RabbitMQ:Password"]);
+        });
+        cfg.ConfigureEndpoints(context);
+    });
+
+    x.AddConsumer<SendNotificationConsumer>();
+});
 
 builder.Services.AddSwaggerGen(opt =>
 {

@@ -5,7 +5,6 @@ namespace Booking.Notifications.Application.Features.NotificationFeatures;
 
 public sealed record NotificationRequest : IRequest<bool>
 {
-    public string FromEmail { get; set; }
-
-    public string Subjecte { get; set; }
+    public string ToEmail { get; set; }
+    public Guid TemplateId { get; set; }
 }

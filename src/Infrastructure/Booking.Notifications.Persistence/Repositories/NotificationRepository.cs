@@ -14,8 +14,20 @@ public class NotificationRepository(DataContext context) : BaseRepository<Notifi
         return await context.NotificationTemplates.SingleOrDefaultAsync(x => x.Subject == subjecte);
     }
 
-    public async Task<NotificationTamplate> GetTemplateByIdAsync(string TemplateId)
+    public async Task<NotificationTamplate> GetTemplateByIdAsync(Guid TemplateId)
     {
-        return await context.NotificationTemplates.SingleOrDefaultAsync(x => x.Id == Guid.Parse(TemplateId));
+        return await context.NotificationTemplates.SingleOrDefaultAsync(x => x.Id == TemplateId);
+    }
+
+    public Task<bool> HasAnyBySubjecteAsync(string subjecte, CancellationToken token = default)
+    {
+        return Context.NotificationTemplates
+            .AnyAsync(x => x.Subject == subjecte);
+    }
+
+    public Task<bool> HasAnyByIdAsync(Guid id, CancellationToken token = default)
+    {
+        return Context.NotificationTemplates
+            .AnyAsync(x => x.Id == id);
     }
 }
