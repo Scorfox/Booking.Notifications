@@ -19,10 +19,10 @@ public sealed class NotificationHandler : IRequestHandler<NotificationRequest, b
     {
         try
         {
-            var tamplate = await _notificationRepository.GetTemplateBySubjecteAsync(request.Subjecte);
+            var tamplate = await _notificationRepository.GetTemplateByIdAsync(request.TemplateId);
             if (tamplate == null)
             {
-                throw new Exception($"Шаблон {request.Subjecte} не найден.");
+                throw new Exception($"Шаблон {request.TemplateId} не найден.");
             }
 
             // Заменяем переменные в теле сообщения, если необходимо
@@ -30,7 +30,7 @@ public sealed class NotificationHandler : IRequestHandler<NotificationRequest, b
 
             // Отправляем письмо
             // Требуется изменение под использование processedBody
-            return await _notificationService.SendMailAsync(request.FromEmail, tamplate.Subject, tamplate.Body);
+            return await _notificationService.SendMailAsync(request.ToEmail, tamplate.Subject, tamplate.Body);
         }
         catch (Exception ex)
         {
