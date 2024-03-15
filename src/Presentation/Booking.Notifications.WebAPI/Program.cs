@@ -2,8 +2,6 @@ using Booking.Notifications.Application;
 using Microsoft.OpenApi.Models;
 using Booking.Notifications.WebAPI.Extensions;
 using Booking.Notifications.Persistence;
-using Booking.Notifications.Domain.Models;
-using System.Configuration;
 using Booking.Notifications.Application.Repositories;
 using Booking.Notifications.Persistence.Services;
 using Booking.Notifications.WebAPI.Options;
@@ -11,7 +9,6 @@ using Booking.Notifications.Domain.Interfaces;
 using Booking.Notifications.Persistence.Repositories;
 using Booking.Notifications.Persistence.Context;
 using MassTransit;
-using Booking.Notifications.Application.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +33,6 @@ builder.Services.AddMassTransit(x =>
         cfg.ConfigureEndpoints(context);
     });
 
-    x.AddConsumer<SendNotificationConsumer>();
 });
 
 builder.Services.AddSwaggerGen(opt =>
