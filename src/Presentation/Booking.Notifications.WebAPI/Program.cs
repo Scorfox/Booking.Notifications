@@ -1,4 +1,5 @@
 using Booking.Notifications.Application;
+using Booking.Notifications.Application.Consumers;
 using Microsoft.OpenApi.Models;
 using Booking.Notifications.WebAPI.Extensions;
 using Booking.Notifications.Persistence;
@@ -20,6 +21,8 @@ builder.Services.ConfigureCorsPolicy();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.ConfigureRazorEmailSender(builder.Configuration.GetSection("MailSettings").Get<MailOptions>()!);
 
 builder.Services.AddMassTransit(x =>
 {
@@ -32,7 +35,7 @@ builder.Services.AddMassTransit(x =>
         });
         cfg.ConfigureEndpoints(context);
     });
-
+    x.AddConsumer<CreateUserNotificationConsumer>();
 });
 
 builder.Services.AddSwaggerGen(opt =>
