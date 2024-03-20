@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Internal;
 using Booking.Notifications.Application.Repositories;
 using Booking.Notifications.Domain.Interfaces;
+using Booking.Notifications.Domain.NotificationsTemplates;
 using Booking.Notifications.WebAPI.Options;
 using FluentEmail.Core;
 using MailKit.Net.Smtp;
@@ -8,7 +9,7 @@ using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using Otus.Booking.Common.Booking.NotificationsTemplates.Models;
-using Otus.Booking.Common.Booking.NotificationsTemplates.Templates;
+
 
 namespace Booking.Notifications.Persistence.Services;
 
