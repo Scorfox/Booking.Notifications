@@ -8,7 +8,8 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Otus.Booking.Common.Booking.NotificationsTemplates.Models;
+using Otus.Booking.Common.Booking.Notifications.Models;
+using Serilog.Core;
 
 
 namespace Booking.Notifications.Persistence.Services;
@@ -17,13 +18,13 @@ public class NotificationService : INotificationService
 {
     private readonly MailOptions _mailOptions;
     private readonly IFluentEmail _emaiSender;
-    private readonly INotificationRepository _notificationRepository;
-
-    public NotificationService(IOptions<MailOptions> mailOptions, IFluentEmail email)
+    private readonly ILogger<NotificationService> _logger;
+    
+    public NotificationService(IOptions<MailOptions> mailOptions, IFluentEmail email, ILogger<NotificationService> logger)
     {
         _mailOptions = mailOptions.Value;
         _emaiSender = email;
-
+        _logger = logger;
     }
     [Obsolete("Use send razor async", true)]
     public async Task<bool> SendMailAsync(string ToMail, string subjecte, string body)
@@ -49,21 +50,21 @@ public class NotificationService : INotificationService
         catch { return false; }
     }
 
-    public async Task<bool> SendRazorMailAsync(string to, UserCreatedNotificationModel model, CancellationToken token = default)
+    public async Task<bool> SendRazorMailAsync(string to, string subject, string bodyTemplate, object model, CancellationToken token = default)
     {
         try
         {
-            var template = UserNotificationsTemplates.UserCreatedBodyTemplate; 
             var email = _emaiSender.To(to)
-                .Subject(UserNotificationsTemplates.UserCreatedSubjectTemplate)
-                .UsingTemplate(template, model);
+                .Subject(subject)
+                .UsingTemplate(bodyTemplate, model);
             await email.SendAsync(token);
             return true;
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogCritical(e, "Can't send mail");
             return false;
         }
     }
+
 }

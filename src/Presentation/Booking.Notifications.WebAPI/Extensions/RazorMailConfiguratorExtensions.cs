@@ -1,6 +1,7 @@
 ﻿using Booking.Notifications.WebAPI.Options;
 using Microsoft.AspNetCore.Mvc;
-using Otus.Booking.Common.Booking.NotificationsTemplates.Models;
+using Otus.Booking.Common.Booking.Notifications.Models;
+
 
 namespace Booking.Notifications.WebAPI.Extensions
 {
@@ -12,6 +13,8 @@ namespace Booking.Notifications.WebAPI.Extensions
             services.AddFluentEmail(options.Mail)
                 .AddRazorRenderer()
                 .AddRazorRenderer(typeof(UserCreatedNotificationModel))
+                .AddRazorRenderer(typeof(ReservationCreatedNotification))
+                .AddRazorRenderer(typeof(ReservationStatusNotification))
                 .AddSmtpSender(options.Host, options.Port, options.Mail, options.Password);
 
         }

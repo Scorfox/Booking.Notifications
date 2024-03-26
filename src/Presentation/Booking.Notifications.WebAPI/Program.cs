@@ -10,54 +10,75 @@ using Booking.Notifications.Domain.Interfaces;
 using Booking.Notifications.Persistence.Repositories;
 using Booking.Notifications.Persistence.Context;
 using MassTransit;
+using Serilog;
+using Serilog.Events;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.ConfigurePersistence(builder.Configuration);
-builder.Services.ConfigureApplication();
-
-builder.Services.ConfigureApiBehavior();
-builder.Services.ConfigureCorsPolicy();
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
-builder.Services.ConfigureRazorEmailSender(builder.Configuration.GetSection("MailSettings").Get<MailOptions>()!);
-
-builder.Services.AddMassTransit(x =>
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .WriteTo.Console()
+    .WriteTo.File("logs/notify.log", rollingInterval:RollingInterval.Day)
+    .CreateLogger();
+try
 {
-    x.UsingRabbitMq((context, cfg) =>
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseSerilog();
+    builder.Services.ConfigurePersistence(builder.Configuration);
+    builder.Services.ConfigureApplication();
+
+    builder.Services.ConfigureApiBehavior();
+    builder.Services.ConfigureCorsPolicy();
+
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
+    builder.Services.ConfigureRazorEmailSender(builder.Configuration.GetSection("MailSettings").Get<MailOptions>()!);
+
+    builder.Services.AddMassTransit(x =>
     {
-        cfg.Host(builder.Configuration["RabbitMQ:Host"], h =>
+        x.UsingRabbitMq((context, cfg) =>
         {
-            h.Username(builder.Configuration["RabbitMQ:Username"]);
-            h.Password(builder.Configuration["RabbitMQ:Password"]);
+            cfg.Host(builder.Configuration["RabbitMQ:Host"], h =>
+            {
+                h.Username(builder.Configuration["RabbitMQ:Username"]);
+                h.Password(builder.Configuration["RabbitMQ:Password"]);
+            });
+            cfg.ConfigureEndpoints(context);
         });
-        cfg.ConfigureEndpoints(context);
+        x.AddConsumer<CreateUserNotificationConsumer>();
+        x.AddConsumer<CreateReservationConsumer>();
+        x.AddConsumer<ReservationStatusChangedConsumer>();
     });
-    x.AddConsumer<CreateUserNotificationConsumer>();
-});
 
-builder.Services.AddSwaggerGen(opt =>
+    builder.Services.AddSwaggerGen(opt =>
+    {
+        opt.SwaggerDoc("v1", new OpenApiInfo {Title = "Notification.API", Version = "v1"});
+    });
+
+    builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+    builder.Services.AddScoped<INotificationService, NotificationService>();
+    builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
+
+    var app = builder.Build();
+
+    var serviceScope = app.Services.CreateScope();
+    var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
+    dataContext?.Database.EnsureCreated();
+    app.UseSerilogRequestLogging();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseErrorHandler();
+    app.UseCors();
+    app.MapControllers();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.Run();
+}
+catch (Exception ex)
 {
-    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Notification.API", Version = "v1" });
-});
-
-builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
-builder.Services.AddScoped<INotificationService, NotificationService>();
-builder.Services.Configure<MailOptions>(builder.Configuration.GetSection("MailSettings"));
-
-var app = builder.Build();
-
-var serviceScope = app.Services.CreateScope();
-var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
-dataContext?.Database.EnsureCreated();
-
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseErrorHandler();
-app.UseCors();
-app.MapControllers();
-app.UseAuthentication();
-app.UseAuthorization();
-app.Run();
+    Log.Fatal(ex, "Application terminated");
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
+}

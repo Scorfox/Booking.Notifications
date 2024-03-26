@@ -1,0 +1,437 @@
+2024-03-26 08:45:34.526 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-03-26 08:45:35.085 +03:00 [DBG] Entity Framework Core 8.0.1 initialized 'DataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2024-03-26 08:45:35.100 +03:00 [DBG] Creating DbConnection.
+2024-03-26 08:45:35.147 +03:00 [DBG] Created DbConnection. (44ms).
+2024-03-26 08:45:35.155 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.336 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.339 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.347 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (5ms).
+2024-03-26 08:45:35.355 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:45:35.362 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (5ms).
+2024-03-26 08:45:35.363 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (10ms).
+2024-03-26 08:45:35.364 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.396 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.406 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:45:35.457 +03:00 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:45:35.461 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.464 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (2ms).
+2024-03-26 08:45:35.466 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.483 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.484 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.485 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (1ms).
+2024-03-26 08:45:35.486 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:45:35.487 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2024-03-26 08:45:35.488 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (1ms).
+2024-03-26 08:45:35.489 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.490 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.491 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:45:35.496 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:45:35.498 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:45:35.499 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (0ms).
+2024-03-26 08:45:35.581 +03:00 [DBG] Hosting starting
+2024-03-26 08:45:35.669 +03:00 [INF] Configured endpoint CreateUserNotification, Consumer: Booking.Notifications.Application.Consumers.CreateUserNotificationConsumer
+2024-03-26 08:45:35.674 +03:00 [INF] Configured endpoint CreateReservation, Consumer: Booking.Notifications.Application.Consumers.CreateReservationConsumer
+2024-03-26 08:45:35.676 +03:00 [INF] Configured endpoint ReservationStatusChanged, Consumer: Booking.Notifications.Application.Consumers.ReservationStatusChangedConsumer
+2024-03-26 08:45:35.765 +03:00 [DBG] Starting bus instances: IBus
+2024-03-26 08:45:35.769 +03:00 [DBG] Starting bus: "rabbitmq://localhostd/"
+2024-03-26 08:45:35.823 +03:00 [DBG] Connect: rabbit@localhostd:5672/
+2024-03-26 08:45:35.922 +03:00 [DBG] Connected: rabbit@localhostd:5672/ (address: amqp://localhostd:5672, local: 61796)
+2024-03-26 08:45:35.947 +03:00 [INF] Now listening on: https://localhost:7022
+2024-03-26 08:45:35.963 +03:00 [INF] Now listening on: http://localhost:5122
+2024-03-26 08:45:35.986 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/N37_BookingNotificationsWebAPI_bus_91xoyygjut6bytjmbdqr4i9iry?temporary=true"
+2024-03-26 08:45:36.005 +03:00 [DBG] Declare queue: name: CreateUserNotification, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:45:36.005 +03:00 [DBG] Declare queue: name: ReservationStatusChanged, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:45:36.005 +03:00 [DBG] Declare queue: name: CreateReservation, durable, consumer-count: 1 message-count: 0
+2024-03-26 08:45:36.033 +03:00 [DBG] Declare exchange: name: CreateReservation, type: fanout, durable
+2024-03-26 08:45:36.033 +03:00 [DBG] Declare exchange: name: CreateUserNotification, type: fanout, durable
+2024-03-26 08:45:36.033 +03:00 [DBG] Declare exchange: name: ReservationStatusChanged, type: fanout, durable
+2024-03-26 08:45:36.035 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-26 08:45:36.038 +03:00 [INF] Hosting environment: Development
+2024-03-26 08:45:36.039 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, type: fanout, durable
+2024-03-26 08:45:36.039 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, type: fanout, durable
+2024-03-26 08:45:36.039 +03:00 [INF] Content root path: E:\Projects\Обучение\OTUS\DotNet\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI
+2024-03-26 08:45:36.039 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, type: fanout, durable
+2024-03-26 08:45:36.043 +03:00 [DBG] Hosting started
+2024-03-26 08:45:36.045 +03:00 [DBG] Bind queue: source: ReservationStatusChanged, destination: ReservationStatusChanged
+2024-03-26 08:45:36.045 +03:00 [DBG] Bind queue: source: CreateReservation, destination: CreateReservation
+2024-03-26 08:45:36.045 +03:00 [DBG] Bind queue: source: CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:45:36.065 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, destination: CreateReservation
+2024-03-26 08:45:36.065 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:45:36.065 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, destination: ReservationStatusChanged
+2024-03-26 08:45:36.115 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateUserNotification" - amq.ctag-uvfEdzZjGC3b_qLMfgW5zg
+2024-03-26 08:45:36.115 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateReservation" - amq.ctag-TqZ3RRccKhMcVDrOiM1BbA
+2024-03-26 08:45:36.115 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/ReservationStatusChanged" - amq.ctag-f_S5leFT8lbIpMAd1ZimvA
+2024-03-26 08:45:36.118 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateUserNotification"
+2024-03-26 08:45:36.118 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateReservation"
+2024-03-26 08:45:36.119 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/ReservationStatusChanged"
+2024-03-26 08:45:36.122 +03:00 [INF] Bus started: "rabbitmq://localhostd/"
+2024-03-26 08:45:36.758 +03:00 [INF] HTTP GET / responded 404 in 32.3235 ms
+2024-03-26 08:52:37.154 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-03-26 08:52:37.621 +03:00 [DBG] Entity Framework Core 8.0.1 initialized 'DataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2024-03-26 08:52:37.631 +03:00 [DBG] Creating DbConnection.
+2024-03-26 08:52:37.665 +03:00 [DBG] Created DbConnection. (32ms).
+2024-03-26 08:52:37.675 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.829 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.832 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.841 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (5ms).
+2024-03-26 08:52:37.849 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:52:37.854 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (4ms).
+2024-03-26 08:52:37.856 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (8ms).
+2024-03-26 08:52:37.860 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.902 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.913 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:52:37.962 +03:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:52:37.966 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.968 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (2ms).
+2024-03-26 08:52:37.970 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.996 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:37.998 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:38.001 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (2ms).
+2024-03-26 08:52:38.002 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:52:38.003 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2024-03-26 08:52:38.004 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (1ms).
+2024-03-26 08:52:38.005 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:38.006 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:38.007 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:52:38.013 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:52:38.020 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:52:38.021 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (0ms).
+2024-03-26 08:52:38.112 +03:00 [DBG] Hosting starting
+2024-03-26 08:52:38.224 +03:00 [INF] Configured endpoint CreateUserNotification, Consumer: Booking.Notifications.Application.Consumers.CreateUserNotificationConsumer
+2024-03-26 08:52:38.229 +03:00 [INF] Configured endpoint CreateReservation, Consumer: Booking.Notifications.Application.Consumers.CreateReservationConsumer
+2024-03-26 08:52:38.236 +03:00 [INF] Configured endpoint ReservationStatusChanged, Consumer: Booking.Notifications.Application.Consumers.ReservationStatusChangedConsumer
+2024-03-26 08:52:38.383 +03:00 [DBG] Starting bus instances: IBus
+2024-03-26 08:52:38.388 +03:00 [DBG] Starting bus: "rabbitmq://localhostd/"
+2024-03-26 08:52:38.460 +03:00 [DBG] Connect: rabbit@localhostd:5672/
+2024-03-26 08:52:38.590 +03:00 [DBG] Connected: rabbit@localhostd:5672/ (address: amqp://localhostd:5672, local: 53673)
+2024-03-26 08:52:38.617 +03:00 [INF] Now listening on: https://localhost:7022
+2024-03-26 08:52:38.618 +03:00 [INF] Now listening on: http://localhost:5122
+2024-03-26 08:52:38.627 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/N37_BookingNotificationsWebAPI_bus_11moyygjut6byrx7bdqr4s8tn5?temporary=true"
+2024-03-26 08:52:38.650 +03:00 [DBG] Declare queue: name: CreateReservation, durable, consumer-count: 1 message-count: 0
+2024-03-26 08:52:38.650 +03:00 [DBG] Declare queue: name: CreateUserNotification, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:52:38.650 +03:00 [DBG] Declare queue: name: ReservationStatusChanged, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:52:38.661 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-26 08:52:38.662 +03:00 [INF] Hosting environment: Development
+2024-03-26 08:52:38.664 +03:00 [INF] Content root path: E:\Projects\Обучение\OTUS\DotNet\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI
+2024-03-26 08:52:38.665 +03:00 [DBG] Hosting started
+2024-03-26 08:52:38.668 +03:00 [DBG] Declare exchange: name: ReservationStatusChanged, type: fanout, durable
+2024-03-26 08:52:38.668 +03:00 [DBG] Declare exchange: name: CreateUserNotification, type: fanout, durable
+2024-03-26 08:52:38.668 +03:00 [DBG] Declare exchange: name: CreateReservation, type: fanout, durable
+2024-03-26 08:52:38.675 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, type: fanout, durable
+2024-03-26 08:52:38.675 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, type: fanout, durable
+2024-03-26 08:52:38.675 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, type: fanout, durable
+2024-03-26 08:52:38.680 +03:00 [DBG] Bind queue: source: CreateReservation, destination: CreateReservation
+2024-03-26 08:52:38.680 +03:00 [DBG] Bind queue: source: CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:52:38.681 +03:00 [DBG] Bind queue: source: ReservationStatusChanged, destination: ReservationStatusChanged
+2024-03-26 08:52:38.700 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, destination: CreateReservation
+2024-03-26 08:52:38.703 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:52:38.703 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, destination: ReservationStatusChanged
+2024-03-26 08:52:38.747 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateUserNotification" - amq.ctag-IikaampJisuFqQhJ71ey2A
+2024-03-26 08:52:38.747 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/ReservationStatusChanged" - amq.ctag-JVHoipRv1MTXhoGmogYRAw
+2024-03-26 08:52:38.747 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateReservation" - amq.ctag-71Pr-XG0w_CH7FhtkDZpJA
+2024-03-26 08:52:38.749 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateUserNotification"
+2024-03-26 08:52:38.749 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/ReservationStatusChanged"
+2024-03-26 08:52:38.751 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateReservation"
+2024-03-26 08:52:38.753 +03:00 [INF] Bus started: "rabbitmq://localhostd/"
+2024-03-26 08:52:39.803 +03:00 [INF] HTTP GET / responded 404 in 19.5654 ms
+2024-03-26 08:52:56.156 +03:00 [FTL] Can't send mail
+System.Net.Mail.SmtpException: Failure sending mail.
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   at System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.InitializeConnectionCallback(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- End of inner exception stack trace ---
+   at FluentEmail.Smtp.SendMailEx.SendMailExImplAsync(SmtpClient client, MailMessage message, CancellationToken token)
+   at FluentEmail.Smtp.SmtpSender.SendAsync(IFluentEmail email, Nullable`1 token)
+   at Booking.Notifications.Persistence.Services.NotificationService.SendRazorMailAsync(String to, String subject, String bodyTemplate, Object model, CancellationToken token) in E:\Projects\Обучение\OTUS\DotNet\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI\Services\NotificationService.cs:line 60
+2024-03-26 08:52:56.192 +03:00 [DBG] RECEIVE "rabbitmq://localhostd/CreateReservation" "74a50000-c99c-7c10-cfd8-08dc4d58f771" Otus.Booking.Common.Booking.Notifications.Models.ReservationCreatedNotification Booking.Notifications.Application.Consumers.CreateReservationConsumer("00:00:07.7559856")
+2024-03-26 08:59:49.699 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-03-26 08:59:50.420 +03:00 [DBG] Entity Framework Core 8.0.1 initialized 'DataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.0+2539d1f4bd0d429cbae20336d531d14938a54297' with options: None
+2024-03-26 08:59:50.434 +03:00 [DBG] Creating DbConnection.
+2024-03-26 08:59:50.470 +03:00 [DBG] Created DbConnection. (35ms).
+2024-03-26 08:59:50.480 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.652 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.655 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.666 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (7ms).
+2024-03-26 08:59:50.673 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:59:50.680 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (5ms).
+2024-03-26 08:59:50.683 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (10ms).
+2024-03-26 08:59:50.686 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.734 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.745 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:59:50.798 +03:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:59:50.803 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.805 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (2ms).
+2024-03-26 08:59:50.808 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.831 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.833 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.835 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (1ms).
+2024-03-26 08:59:50.837 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-03-26 08:59:50.838 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (1ms).
+2024-03-26 08:59:50.840 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (2ms).
+2024-03-26 08:59:50.841 +03:00 [DBG] Opening connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.843 +03:00 [DBG] Opened connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.844 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:59:50.850 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM pg_class AS cls
+JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+WHERE
+        cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+        ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+        -- Exclude tables which are members of PG extensions
+        NOT EXISTS (
+            SELECT 1 FROM pg_depend WHERE
+                classid=(
+                    SELECT cls.oid
+                    FROM pg_class AS cls
+                             JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                    WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                ) AND
+                objid=cls.oid AND
+                deptype IN ('e', 'x')
+        )
+2024-03-26 08:59:50.853 +03:00 [DBG] Closing connection to database 'booking-notification' on server 'tcp://localhostd:5432'.
+2024-03-26 08:59:50.854 +03:00 [DBG] Closed connection to database 'booking-notification' on server 'tcp://localhostd:5432' (1ms).
+2024-03-26 08:59:50.938 +03:00 [DBG] Hosting starting
+2024-03-26 08:59:51.059 +03:00 [INF] Configured endpoint CreateUserNotification, Consumer: Booking.Notifications.Application.Consumers.CreateUserNotificationConsumer
+2024-03-26 08:59:51.063 +03:00 [INF] Configured endpoint CreateReservation, Consumer: Booking.Notifications.Application.Consumers.CreateReservationConsumer
+2024-03-26 08:59:51.066 +03:00 [INF] Configured endpoint ReservationStatusChanged, Consumer: Booking.Notifications.Application.Consumers.ReservationStatusChangedConsumer
+2024-03-26 08:59:51.164 +03:00 [DBG] Starting bus instances: IBus
+2024-03-26 08:59:51.169 +03:00 [DBG] Starting bus: "rabbitmq://localhostd/"
+2024-03-26 08:59:51.256 +03:00 [DBG] Connect: rabbit@localhostd:5672/
+2024-03-26 08:59:52.096 +03:00 [INF] Now listening on: https://localhost:7022
+2024-03-26 08:59:52.096 +03:00 [DBG] Connected: rabbit@localhostd:5672/ (address: amqp://localhostd:5672, local: 54278)
+2024-03-26 08:59:52.097 +03:00 [INF] Now listening on: http://localhost:5122
+2024-03-26 08:59:52.160 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/N37_BookingNotificationsWebAPI_bus_9n9yyygjut6bynnkbdqr4sxunz?temporary=true"
+2024-03-26 08:59:52.180 +03:00 [DBG] Declare queue: name: CreateUserNotification, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:59:52.180 +03:00 [DBG] Declare queue: name: CreateReservation, durable, consumer-count: 1 message-count: 0
+2024-03-26 08:59:52.180 +03:00 [DBG] Declare queue: name: ReservationStatusChanged, durable, consumer-count: 0 message-count: 0
+2024-03-26 08:59:52.185 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-26 08:59:52.187 +03:00 [INF] Hosting environment: Development
+2024-03-26 08:59:52.188 +03:00 [INF] Content root path: E:\Projects\Обучение\OTUS\DotNet\Booking.Notifications\src\Presentation\Booking.Notifications.WebAPI
+2024-03-26 08:59:52.190 +03:00 [DBG] Hosting started
+2024-03-26 08:59:52.198 +03:00 [DBG] Declare exchange: name: CreateUserNotification, type: fanout, durable
+2024-03-26 08:59:52.198 +03:00 [DBG] Declare exchange: name: ReservationStatusChanged, type: fanout, durable
+2024-03-26 08:59:52.198 +03:00 [DBG] Declare exchange: name: CreateReservation, type: fanout, durable
+2024-03-26 08:59:52.203 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, type: fanout, durable
+2024-03-26 08:59:52.203 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, type: fanout, durable
+2024-03-26 08:59:52.203 +03:00 [DBG] Declare exchange: name: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, type: fanout, durable
+2024-03-26 08:59:52.211 +03:00 [DBG] Bind queue: source: CreateReservation, destination: CreateReservation
+2024-03-26 08:59:52.211 +03:00 [DBG] Bind queue: source: CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:59:52.211 +03:00 [DBG] Bind queue: source: ReservationStatusChanged, destination: ReservationStatusChanged
+2024-03-26 08:59:52.246 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Contracts.User.Requests:CreateUserNotification, destination: CreateUserNotification
+2024-03-26 08:59:52.246 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationStatusNotification, destination: ReservationStatusChanged
+2024-03-26 08:59:52.246 +03:00 [DBG] Bind exchange: source: Otus.Booking.Common.Booking.Notifications.Models:ReservationCreatedNotification, destination: CreateReservation
+2024-03-26 08:59:52.291 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateUserNotification" - amq.ctag-HdmWkM_hiqnWVrqOpKF-9A
+2024-03-26 08:59:52.291 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/ReservationStatusChanged" - amq.ctag-HzyLV2sjIfWqGbiw2Ac-9w
+2024-03-26 08:59:52.291 +03:00 [DBG] Consumer Ok: "rabbitmq://localhostd/CreateReservation" - amq.ctag-D5iO0tQjZmRhG-4Znqi-fw
+2024-03-26 08:59:52.293 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateUserNotification"
+2024-03-26 08:59:52.294 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/ReservationStatusChanged"
+2024-03-26 08:59:52.295 +03:00 [DBG] Endpoint Ready: "rabbitmq://localhostd/CreateReservation"
+2024-03-26 08:59:52.297 +03:00 [INF] Bus started: "rabbitmq://localhostd/"
+2024-03-26 08:59:53.853 +03:00 [INF] HTTP GET / responded 404 in 25.1573 ms

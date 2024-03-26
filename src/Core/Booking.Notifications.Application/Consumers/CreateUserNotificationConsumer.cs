@@ -1,7 +1,9 @@
 ﻿using Booking.Notifications.Domain.Interfaces;
+using Booking.Notifications.Domain.NotificationsTemplates;
 using MassTransit;
 using Otus.Booking.Common.Booking.Contracts.User.Requests;
-using Otus.Booking.Common.Booking.NotificationsTemplates.Models;
+using Otus.Booking.Common.Booking.Notifications.Models;
+
 
 namespace Booking.Notifications.Application.Consumers
 {
@@ -18,16 +20,14 @@ namespace Booking.Notifications.Application.Consumers
         {
             var request = context.Message;
             
-            await _notificationService.SendRazorMailAsync(request.Email, new UserCreatedNotificationModel
+            await _notificationService.SendRazorMailAsync(request.Email, 
+                UserNotificationsTemplates.UserCreatedSubjectTemplate, UserNotificationsTemplates.UserCreatedBodyTemplate, 
+                new UserCreatedNotificationModel
             {
                 LastName = request.LastName,
                 Login = request.Login,
                 Name = request.FirstName
             });
-
-
         }
     }
-
-
 }
